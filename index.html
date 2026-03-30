@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Roman Straka Autoservis — Rodinný autoservis v Praze 9, Prosek. Opravy osobních vozů, diagnostika, pneuservis, STK příprava. Tel: 602 355 732">
+  <title>Roman Straka — Autoservis Praha 9</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&subset=latin,latin-ext&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --red: #DC2626;
+      --dark: #111827;
+      --accent-light: #FEF2F2;
+      --gray-600: #4B5563;
+      --gray-200: #E5E7EB;
+      --white: #ffffff;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Syne', sans-serif;
+      background: var(--white);
+      color: var(--dark);
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      overflow-x: hidden;
+    }
+
+    em {
+      color: var(--red);
+      font-style: normal;
+      font-weight: 800;
+      display: inline;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 clamp(20px, 5vw, 64px);
+      height: 64px;
+      background: rgba(17, 24, 39, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-badge {
+      width: 36px;
+      height: 36px;
+      background: var(--red);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      color: var(--white);
+      letter-spacing: -0.5px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 15px;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-logo-text span {
+      color: rgba(255,255,255,0.5);
+      font-weight: 400;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--white);
+    }
+
+    .nav-cta {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: var(--white) !important;
+      padding: 8px 18px;
+      border-radius: 6px;
+      font-weight: 700 !important;
+      font-size: 14px !important;
+      text-decoration: none;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .nav-cta:hover {
+      opacity: 0.9;
+      transform: translateY(-1px);
+      color: var(--white) !important;
+    }
+
+    .nav-mobile-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      max-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=1600&q=80&fit=crop');
+      background-size: cover;
+      background-position: center 40%;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        105deg,
+        rgba(17,24,39,0.93) 0%,
+        rgba(17,24,39,0.80) 45%,
+        rgba(17,24,39,0.45) 100%
+      );
+      z-index: 1;
+    }
+
+    .hero-monogram {
+      position: absolute;
+      right: -2vw;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 30vw;
+      font-weight: 800;
+      color: rgba(255,255,255,0.05);
+      line-height: 1;
+      z-index: 2;
+      user-select: none;
+      pointer-events: none;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 0 clamp(20px, 5vw, 64px);
+      max-width: 760px;
+      padding-top: 64px;
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .hero-content h1 {
+      font-size: clamp(32px, 3.5vw, 52px);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.15;
+      letter-spacing: -0.02em;
+      margin-bottom: 20px;
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 1.5vw, 18px);
+      color: rgba(255,255,255,0.72);
+      line-height: 1.65;
+      max-width: 520px;
+      margin-bottom: 36px;
+      font-weight: 400;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--red);
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .btn-primary:hover {
+      opacity: 0.9;
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.1);
+      color: var(--white);
+      text-decoration: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 15px;
+      border: 1px solid rgba(255,255,255,0.2);
+      backdrop-filter: blur(8px);
+      transition: background 0.2s, transform 0.15s;
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.18);
+      transform: translateY(-2px);
+    }
+
+    .hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 32px;
+      color: rgba(255,255,255,0.6);
+      font-size: 13px;
+    }
+
+    .hero-rating .stars {
+      color: #F59E0B;
+      letter-spacing: 2px;
+    }
+
+    .hero-rating strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    /* ── SHARED SECTION ── */
+    section {
+      padding: clamp(64px, 8vw, 100px) clamp(20px, 5vw, 64px);
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--red);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-label::before {
+      content: '';
+      display: inline-block;
+      width: 20px;
+      height: 2px;
+      background: var(--red);
+    }
+
+    .section-title {
+      font-size: clamp(26px, 2.8vw, 40px);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-desc {
+      font-size: 16px;
+      color: var(--gray-600);
+      line-height: 1.7;
+      max-width: 540px;
+    }
+
+    /* ── SLUZBY ── */
+    #sluzby {
+      background: var(--white);
+    }
+
+    .sluzby-header {
+      max-width: 1200px;
+      margin: 0 auto 52px;
+    }
+
+    .sluzby-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto 48px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+      cursor: default;
+    }
+
+    .service-card:hover {
+      border-color: var(--red);
+      box-shadow: 0 8px 32px rgba(220,38,38,0.1);
+      transform: translateY(-3px);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--accent-light);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+    }
+
+    .service-icon svg {
+      width: 24px;
+      height: 24px;
+      color: var(--red);
+    }
+
+    .service-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      font-size: 14px;
+      color: var(--gray-600);
+      line-height: 1.65;
+    }
+
+    .sluzby-image-row {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 14px;
+      overflow: hidden;
+      position: relative;
+      height: 220px;
+    }
+
+    .sluzby-image-row img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .sluzby-image-row-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, rgba(17,24,39,0.7) 0%, transparent 60%);
+      display: flex;
+      align-items: center;
+      padding: 0 40px;
+    }
+
+    .sluzby-image-row-text {
+      color: var(--white);
+    }
+
+    .sluzby-image-row-text strong {
+      display: block;
+      font-size: clamp(18px, 2vw, 26px);
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .sluzby-image-row-text span {
+      font-size: 14px;
+      opacity: 0.75;
+    }
+
+    /* ── PROC NAS ── */
+    #proc-nas {
+      background: var(--dark);
+      color: var(--white);
+    }
+
+    .proc-nas-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(40px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .proc-nas-left .section-title {
+      color: var(--white);
+    }
+
+    .proc-nas-left .section-desc {
+      color: rgba(255,255,255,0.6);
+    }
+
+    .stats-row {
+      display: flex;
+      gap: 32px;
+      margin-top: 36px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      flex: 1;
+      min-width: 80px;
+    }
+
+    .stat-number {
+      display: block;
+      font-size: clamp(28px, 3vw, 40px);
+      font-weight: 800;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: rgba(255,255,255,0.55);
+      font-weight: 400;
+    }
+
+    .stat-divider {
+      width: 1px;
+      background: rgba(255,255,255,0.1);
+      align-self: stretch;
+      min-height: 48px;
+    }
+
+    .features-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .features-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      font-size: 15px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.55;
+    }
+
+    .feature-check {
+      flex-shrink: 0;
+      width: 22px;
+      height: 22px;
+      background: rgba(220,38,38,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: 1px;
+    }
+
+    .feature-check svg {
+      width: 12px;
+      height: 12px;
+      color: var(--red);
+    }
+
+    /* ── KONTAKT ── */
+    #kontakt {
+      background: var(--accent-light);
+    }
+
+    .kontakt-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: clamp(40px, 6vw, 72px);
+      align-items: start;
+    }
+
+    .kontakt-info {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .kontakt-info .section-title {
+      margin-bottom: 0;
+    }
+
+    .kontakt-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .kontakt-icon {
+      flex-shrink: 0;
+      width: 42px;
+      height: 42px;
+      background: var(--white);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+    }
+
+    .kontakt-icon svg {
+      width: 20px;
+      height: 20px;
+      color: var(--red);
+    }
+
+    .kontakt-detail-text strong {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--gray-600);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .kontakt-detail-text a,
+    .kontakt-detail-text span {
+      font-size: 15px;
+      color: var(--dark);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .kontakt-detail-text a:hover {
+      color: var(--red);
+    }
+
+    .hours-grid {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 4px 16px;
+    }
+
+    .hours-grid .day {
+      font-size: 14px;
+      color: var(--gray-600);
+      font-weight: 400;
+    }
+
+    .hours-grid .time {
+      font-size: 14px;
+      color: var(--dark);
+      font-weight: 700;
+    }
+
+    .map-container {
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+      height: 380px;
+      background: #e8e8e8;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: block;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 40px clamp(20px, 5vw, 64px);
+    }
+
+    .footer-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand-badge {
+      width: 32px;
+      height: 32px;
+      background: var(--red);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 12px;
+      color: var(--white);
+    }
+
+    .footer-brand-name {
+      color: var(--white);
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .footer-brand-name span {
+      display: block;
+      color: rgba(255,255,255,0.4);
+      font-weight: 400;
+      font-size: 12px;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.5);
+      text-decoration: none;
+      font-size: 13px;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: rgba(255,255,255,0.85);
+    }
+
+    .footer-copy {
+      color: rgba(255,255,255,0.3);
+      font-size: 12px;
+    }
+
+    /* ── WHATSAPP FLOAT ── */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37,211,102,0.45);
+      z-index: 200;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37,211,102,0.55);
+    }
+
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+      fill: var(--white);
+    }
+
+    /* ── SCROLL REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(28px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      .nav-links {
+        display: none;
+      }
+
+      .nav-mobile-btn {
+        display: flex;
+      }
+
+      .sluzby-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .proc-nas-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .proc-nas-right {
+        margin-top: 0;
+      }
+
+      .kontakt-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .map-container {
+        height: 280px;
+      }
+
+      .hero-monogram {
+        font-size: 45vw;
+        right: -4vw;
+        opacity: 0.04;
+      }
+    }
+
+    @media (max-width: 580px) {
+      .sluzby-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .stats-row {
+        gap: 20px;
+      }
+
+      .stat-divider {
+        display: none;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+      }
+
+      .footer-links {
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <div class="nav-logo-badge">RS</div>
+      <div class="nav-logo-text">RS Autoservis <span>Praha 9</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#sluzby">Služby</a></li>
+      <li><a href="#proc-nas">Proč nás</a></li>
+      <li><a href="#kontakt">Kontakt</a></li>
+      <li>
+        <a href="tel:602355732" class="nav-cta">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          602 355 732
+        </a>
+      </li>
+    </ul>
+    <button class="nav-mobile-btn" aria-label="Menu">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <line x1="3" y1="12" x2="21" y2="12"/>
+        <line x1="3" y1="18" x2="21" y2="18"/>
+      </svg>
+    </button>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-monogram">RS</div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">Autoservis &amp; Pneuservis — Praha 9</div>
+      <h1>Autoservis, <em>kterému</em><br>prostě důvěřujete</h1>
+      <p class="hero-sub">Rodinný autoservis v Praze 9 — osobní přístup, férové ceny, práce na domluvě.</p>
+
+      <div class="hero-actions">
+        <a href="tel:602355732" class="btn-primary">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+          </svg>
+          Zavolat
+        </a>
+        <a href="https://wa.me/420602355732" class="btn-secondary" target="_blank" rel="noopener">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          WhatsApp
+        </a>
+      </div>
+
+      <div class="hero-rating">
+        <span class="stars">★★★★★</span>
+        <strong>4.8</strong>
+        <span>hodnocení na Google (7 recenzí)</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- SLUZBY -->
+  <section id="sluzby">
+    <div class="sluzby-header reveal">
+      <div class="section-label">Co děláme</div>
+      <h2 class="section-title">Kompletní péče<br>o váš vůz</h2>
+      <p class="section-desc">Od výměny oleje přes diagnostiku až po přípravu na STK. Vše pod jednou střechou, v Proseku.</p>
+    </div>
+
+    <div class="sluzby-grid">
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="3"/>
+            <path d="M19.07 4.93l-1.41 1.41M5.34 5.34L3.93 3.93M19.07 19.07l-1.41-1.41M5.34 18.66l-1.41 1.41M22 12h-2M4 12H2M12 22v-2M12 4V2"/>
+          </svg>
+        </div>
+        <h3>Diagnostika</h3>
+        <p>Moderní diagnostické přístroje pro přesnou identifikaci závad. Víme co je špatně dřív, než to víte vy.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83"/>
+          </svg>
+        </div>
+        <h3>Opravy vozidel</h3>
+        <p>Opravujeme osobní vozy všech značek. Motory, převodovky, podvozky — žádná práce není pro nás cizí.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+        </div>
+        <h3>Výměna oleje</h3>
+        <p>Rychlá a precizní výměna motorového oleje včetně filtru. Přijďte bez rezervace, odjeďte za hodinu.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <circle cx="12" cy="12" r="6"/>
+            <circle cx="12" cy="12" r="2"/>
+          </svg>
+        </div>
+        <h3>Pneuservis</h3>
+        <p>Přezutí, vyvažování kol, opravy defektů. Zimní i letní sezóna — včetně uskladnění pneumatik.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 002 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/>
+          </svg>
+        </div>
+        <h3>Brzdy</h3>
+        <p>Výměna brzdových destiček, kotoučů a čelistí. Bezpečnost na prvním místě — kontrola zdarma při servisu.</p>
+      </div>
+
+      <div class="service-card reveal">
+        <div class="service-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="9 11 12 14 22 4"/>
+            <path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/>
+          </svg>
+        </div>
+        <h3>Příprava na STK</h3>
+        <p>Komplexní kontrola vozu před technickou prohlídkou. Opravíme co je třeba, abyste STK prošli napoprvé.</p>
+      </div>
+    </div>
+
+    <div class="sluzby-image-row reveal">
+      <img
+        src="https://images.unsplash.com/photo-1619642751034-765dfdf7c58e?w=1400&q=75&fit=crop"
+        alt="Autoservis dílna"
+        loading="lazy"
+      >
+      <div class="sluzby-image-row-overlay">
+        <div class="sluzby-image-row-text">
+          <strong>Objednání na servis do 24 hodin</strong>
+          <span>Zavolejte nebo napište na WhatsApp — termín potvrdíme obratem.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROC NAS -->
+  <section id="proc-nas">
+    <div class="proc-nas-inner">
+      <div class="proc-nas-left reveal">
+        <div class="section-label" style="color: var(--red);">Proč Roman Straka</div>
+        <h2 class="section-title">Nejsme řetězec.<br>Jsme sousedi.</h2>
+        <p class="section-desc">V Praze 9 jsme doma. Každý zákazník je pro nás konkrétní člověk, ne číslo zakázky.</p>
+
+        <div class="stats-row">
+          <div class="stat-item">
+            <span class="stat-number">20+</span>
+            <span class="stat-label">let zkušeností</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">Praha&nbsp;9</span>
+            <span class="stat-label">Prosek, k dostání</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-item">
+            <span class="stat-number">Všechny</span>
+            <span class="stat-label">značky aut</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="proc-nas-right reveal">
+        <ul class="features-list">
+          <li>
+            <span class="feature-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Férová cena bez překvapení</strong> — vždy dostanete kalkulaci předem. Schvalujete každou opravu.</span>
+          </li>
+          <li>
+            <span class="feature-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Osobní přístup Romana</strong> — mluvíte přímo s majitelem, ne s call centrem. Vysvětlíme vše srozumitelně.</span>
+          </li>
+          <li>
+            <span class="feature-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Rychlé termíny</strong> — nebudete čekat 3 týdny. Většinu oprav zvládneme do 24–48 hodin.</span>
+          </li>
+          <li>
+            <span class="feature-check">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="20 6 9 17 4 12"/>
+              </svg>
+            </span>
+            <span><strong>Kvalitní díly</strong> — používáme originální nebo certifikované náhradní díly s zárukou.</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONTAKT -->
+  <section id="kontakt">
+    <div class="kontakt-inner">
+      <div class="kontakt-info reveal">
+        <div>
+          <div class="section-label">Kde nás najdete</div>
+          <h2 class="section-title">Přijeďte<br>nebo zavolejte</h2>
+        </div>
+
+        <div class="kontakt-detail">
+          <div class="kontakt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+          </div>
+          <div class="kontakt-detail-text">
+            <strong>Telefon</strong>
+            <a href="tel:602355732">602 355 732</a>
+          </div>
+        </div>
+
+        <div class="kontakt-detail">
+          <div class="kontakt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/>
+              <circle cx="12" cy="10" r="3"/>
+            </svg>
+          </div>
+          <div class="kontakt-detail-text">
+            <strong>Adresa</strong>
+            <a href="https://maps.google.com/?q=Prosecká+53,+Praha+9" target="_blank" rel="noopener">
+              Prosecká 53, Praha 9 — Prosek
+            </a>
+          </div>
+        </div>
+
+        <div class="kontakt-detail">
+          <div class="kontakt-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <polyline points="12 6 12 12 16 14"/>
+            </svg>
+          </div>
+          <div class="kontakt-detail-text">
+            <strong>Otevírací doba</strong>
+            <div class="hours-grid">
+              <span class="day">Pondělí — Pátek</span>
+              <span class="time">7:30 — 17:00</span>
+              <span class="day">Sobota</span>
+              <span class="time">Na domluvě</span>
+              <span class="day">Neděle</span>
+              <span class="time">Zavřeno</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <a href="tel:602355732" class="btn-primary" style="width: fit-content;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.8 19.79 19.79 0 01.07 1.18 2 2 0 012.06 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/>
+            </svg>
+            Zavolat 602 355 732
+          </a>
+        </div>
+      </div>
+
+      <div class="map-container reveal">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2558.6!2d14.4851!3d50.1178!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470bed8b4a1b7e0f%3A0x1!2sProseck%C3%A1+53%2C+190+00+Praha+9!5e0!3m2!1scs!2scz!4v1710000000000"
+          title="Mapa — Roman Straka Autoservis, Prosecká 53, Praha 9"
+          allowfullscreen
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        ></iframe>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <div class="footer-brand-badge">RS</div>
+        <div class="footer-brand-name">
+          Roman Straka Autoservis
+          <span>Prosecká 53, Praha 9</span>
+        </div>
+      </div>
+
+      <ul class="footer-links">
+        <li><a href="#sluzby">Služby</a></li>
+        <li><a href="#proc-nas">Proč nás</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="tel:602355732">602 355 732</a></li>
+      </ul>
+
+      <p class="footer-copy">&copy; 2025 Roman Straka Autoservis</p>
+    </div>
+  </footer>
+
+  <!-- WHATSAPP FLOAT -->
+  <a
+    href="https://wa.me/420602355732"
+    class="whatsapp-float"
+    target="_blank"
+    rel="noopener"
+    aria-label="Napsat na WhatsApp"
+  >
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+    </svg>
+  </a>
+
+  <script>
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver(
+      (entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Stagger service cards
+    document.querySelectorAll('.service-card.reveal').forEach((card, i) => {
+      card.style.transitionDelay = (i * 80) + 'ms';
+    });
+
+    // Nav scroll effect
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        nav.style.background = 'rgba(17,24,39,0.97)';
+      } else {
+        nav.style.background = 'rgba(17,24,39,0.92)';
+      }
+    }, { passive: true });
+  </script>
+</body>
+</html>
